@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluxtype | Velocity Engine</title>
+    <title>fluxtype | minimalist typing test</title>
     <link rel="stylesheet" href="src/popup/style.css">
 </head>
 <body>
     <div id="app-shell">
-        <!-- TIER 1: BRANDING & STATUS -->
         <div class="header-box">
             <div class="branding">FLUXTYPE</div>
             <div class="timer-capsule">
@@ -17,25 +16,20 @@
             </div>
         </div>
 
-        <!-- TIER 2: ACTION ZONE (Focus Immersion) -->
         <div class="action-box">
             <div id="source-container">
                 <div id="source-words">
-                    <!-- Word reference populated here -->
-                </div>
+                    </div>
             </div>
 
             <div id="typing-input" class="action-zone" tabindex="0">
                 <div id="caret"></div>
                 <div id="typing-field">
-                    <!-- Typed characters populated here -->
-                </div>
+                    </div>
             </div>
         </div>
 
-        <!-- TIER 3: CONFIGURATION (Boxed Settings) -->
         <div class="config-container">
-            <!-- CUSTOM TEXT INJECTION DRAWER -->
             <div id="custom-text-box" class="config-drawer">
                 <span class="control-label drawer-title" id="ui-label-custom-title">CUSTOM TEXT</span>
                 <textarea id="customInput" maxlength="50000" placeholder="Paste your custom corpora here..."></textarea>
@@ -48,7 +42,6 @@
             <div class="config-header" id="ui-config-header">SETTINGS</div>
 
             <div class="config-content five-module-bar">
-                <!-- MODULE 1: LANGUAGE -->
                 <div id="langModule" class="control-group module">
                     <span class="control-label" id="ui-label-lang">LANGUAGE</span>
                     <select id="langSelect" class="select-full">
@@ -60,13 +53,11 @@
                     </select>
                 </div>
 
-                <!-- MODULE 2: CUSTOM -->
                 <div class="control-group module">
                     <span class="control-label" id="ui-label-source">SOURCE</span>
                     <button id="customToggle" class="btn-full"><span id="ui-custom-btn-text">CUSTOM</span><span class="status-led"></span></button>
                 </div>
 
-                <!-- MODULE 3: SCALE -->
                 <div class="control-group module">
                     <span class="control-label" id="ui-label-scale">SCALE</span>
                     <select id="scaleRange" class="select-full">
@@ -81,7 +72,6 @@
                     </select>
                 </div>
 
-                <!-- MODULE 4: TIME -->
                 <div class="control-group module">
                     <span class="control-label" id="ui-label-time">TIME</span>
                     <select id="timeSelect" class="select-full">
@@ -92,7 +82,6 @@
                     </select>
                 </div>
 
-                <!-- MODULE 5: RESTART -->
                 <div class="control-group module">
                     <span class="control-label" id="ui-label-action">ACTION</span>
                     <button id="restart-btn" class="btn-full highlight">RESTART</button>
@@ -103,7 +92,6 @@
 
     <div id="results-overlay">
         <div class="result-modal">
-            <!-- 5-GRID METRICS -->
             <div class="metric-grid">
                 <div class="metric-card primary">
                     <div class="label-stack">
@@ -142,7 +130,6 @@
                 </div>
             </div>
 
-            <!-- METADATA ROW (Triple-Anchor Symmetry) -->
             <div class="confact-row">
                 <div class="confact-item left"><span id="ui-conf-label-lang">DİL:</span> <span id="res-conf-lang">--</span></div>
                 <div class="confact-item center">
@@ -151,7 +138,6 @@
                 <div class="confact-item right"><span id="ui-conf-label-time">SÜRE:</span> <span id="res-conf-time">--</span></div>
             </div>
 
-            <!-- KEYBOARD HEATMAP SHELL (60% Layout) -->
             <div id="keyboard-heatmap-shell">
                 <div class="kb-row">
                     <div class="key" data-key="`"></div><div class="key" data-key="1"></div><div class="key" data-key="2"></div><div class="key" data-key="3"></div><div class="key" data-key="4"></div><div class="key" data-key="5"></div><div class="key" data-key="6"></div><div class="key" data-key="7"></div><div class="key" data-key="8"></div><div class="key" data-key="9"></div><div class="key" data-key="0"></div><div class="key" data-key="-"></div><div class="key" data-key="="></div><div class="key double" data-key="backspace"></div>
@@ -170,7 +156,6 @@
                 </div>
             </div>
 
-            <!-- ACTION FOOTER (Restored 3-Button Professional Layout) -->
             <div class="modal-footer">
                 <div class="modal-actions-tier-1">
                     <button id="export-btn" class="btn-secondary">GÖRSEL RAPOR (PNG)</button>
@@ -181,16 +166,6 @@
         </div>
     </div>
 
-
-    <!-- 
-        ARCHITECTURAL SECURITY CONSTRAINTS:
-        To circumvent the browser's strict local security model (CORS) over the file:// protocol, 
-        this application explicitly avoids ES6 module imports (type="module"). 
-        
-        Instead, it utilizes deterministic sequential script execution. Dependencies are 
-        loaded in a strict linear order to ensure that the global namespace (window scope) 
-        is fully hydrated before the UI orchestrator (popup.js) initializes the engine.
-    -->
     <script src="src/utils/html2canvas.min.js"></script>
     <script src="src/popup/dictionaries.js"></script>
     <script src="src/popup/translations.js"></script>
@@ -201,5 +176,5 @@
     <script src="src/core/SessionManager.js"></script>
     <script src="src/core/TypingEngine.js"></script>
     <script src="src/popup/popup.js"></script>
-</body>
+</body> 
 </html>
