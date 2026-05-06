@@ -2,6 +2,8 @@
 
 A minimalist, high-precision typing speed test application handcrafted in pure Vanilla JavaScript. Optimized for offline-first local execution and seamless widget embeddability.
 
+▶️ **[Live Demo](https://ahakanacar.github.io/fluxtype/)**
+
 ## 🚀 Key Features
 
 * **Deterministic Core Logic:** High-frequency keystroke data tracking (WPM, Accuracy, Key Latency) with zero framework overhead.
@@ -24,7 +26,6 @@ You do not need to install packages or run a local server.
 
 `fluxtype` is fully encapsulated inside a responsive, geometrically bounded shell (`min-width: 360px` to `max-width: 600px`). It can be embedded into any web page or external project as an isolated typing widget via an HTML `iframe`.
 
-▶️ **[Live Demo](https://ahakanacar.github.io/fluxtype/)**
 
 ```html
 <iframe 
