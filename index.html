@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxtype | Velocity Engine</title>
+    <link rel="stylesheet" href="src/popup/style.css">
+</head>
+<body>
+    <div id="app-shell">
+        <!-- TIER 1: BRANDING & STATUS -->
+        <div class="header-box">
+            <div class="branding">FLUXTYPE</div>
+            <div class="timer-capsule">
+                <span class="timer-label" id="ui-timer-label">TIME:</span>
+                <div id="timer-display">30</div>
+            </div>
+        </div>
+
+        <!-- TIER 2: ACTION ZONE (Focus Immersion) -->
+        <div class="action-box">
+            <div id="source-container">
+                <div id="source-words">
+                    <!-- Word reference populated here -->
+                </div>
+            </div>
+
+            <div id="typing-input" class="action-zone" tabindex="0">
+                <div id="caret"></div>
+                <div id="typing-field">
+                    <!-- Typed characters populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TIER 3: CONFIGURATION (Boxed Settings) -->
+        <div class="config-container">
+            <!-- CUSTOM TEXT INJECTION DRAWER -->
+            <div id="custom-text-box" class="config-drawer">
+                <span class="control-label drawer-title" id="ui-label-custom-title">CUSTOM TEXT</span>
+                <textarea id="customInput" maxlength="50000" placeholder="Paste your custom corpora here..."></textarea>
+                <div class="drawer-actions">
+                    <button id="btn-save" class="btn-full active">SAVE</button>
+                    <button id="btn-delete" class="btn-full">DELETE</button>
+                </div>
+            </div>
+
+            <div class="config-header" id="ui-config-header">SETTINGS</div>
+
+            <div class="config-content five-module-bar">
+                <!-- MODULE 1: LANGUAGE -->
+                <div id="langModule" class="control-group module">
+                    <span class="control-label" id="ui-label-lang">LANGUAGE</span>
+                    <select id="langSelect" class="select-full">
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="de">Deutsch</option>
+                        <option value="fr">Français</option>
+                        <option value="es">Español</option>
+                    </select>
+                </div>
+
+                <!-- MODULE 2: CUSTOM -->
+                <div class="control-group module">
+                    <span class="control-label" id="ui-label-source">SOURCE</span>
+                    <button id="customToggle" class="btn-full"><span id="ui-custom-btn-text">CUSTOM</span><span class="status-led"></span></button>
+                </div>
+
+                <!-- MODULE 3: SCALE -->
+                <div class="control-group module">
+                    <span class="control-label" id="ui-label-scale">SCALE</span>
+                    <select id="scaleRange" class="select-full">
+                        <option value="25">25%</option>
+                        <option value="50">50%</option>
+                        <option value="75">75%</option>
+                        <option value="100" selected>100%</option>
+                        <option value="125">125%</option>
+                        <option value="150">150%</option>
+                        <option value="175">175%</option>
+                        <option value="200">200%</option>
+                    </select>
+                </div>
+
+                <!-- MODULE 4: TIME -->
+                <div class="control-group module">
+                    <span class="control-label" id="ui-label-time">TIME</span>
+                    <select id="timeSelect" class="select-full">
+                        <option value="15">15s</option>
+                        <option value="30" selected>30s</option>
+                        <option value="60">60s</option>
+                        <option value="120">120s</option>
+                    </select>
+                </div>
+
+                <!-- MODULE 5: RESTART -->
+                <div class="control-group module">
+                    <span class="control-label" id="ui-label-action">ACTION</span>
+                    <button id="restart-btn" class="btn-full highlight">RESTART</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="results-overlay">
+        <div class="result-modal">
+            <!-- 5-GRID METRICS -->
+            <div class="metric-grid">
+                <div class="metric-card primary">
+                    <div class="label-stack">
+                        <span class="abbr" id="ui-res-wpm-abbr">DKH</span>
+                        <span class="desc" id="ui-res-wpm-desc">Dakika Kelime Hızı</span>
+                    </div>
+                    <div id="res-net-wpm" class="metric-value highlight">--</div>
+                </div>
+                <div class="metric-card primary">
+                    <div class="label-stack">
+                        <span class="abbr" id="ui-res-acc-abbr">DOĞRULUK</span>
+                        <span class="desc" id="ui-res-acc-desc">Basım Hassasiyeti</span>
+                    </div>
+                    <div id="res-acc" class="metric-value highlight">--%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label-stack">
+                        <span class="abbr" id="ui-res-raw-abbr">HAM</span>
+                        <span class="desc" id="ui-res-raw-desc">Ham Hız</span>
+                    </div>
+                    <div id="res-raw-wpm" class="metric-value">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label-stack">
+                        <span class="abbr" id="ui-res-cpm-abbr">KAH</span>
+                        <span class="desc" id="ui-res-cpm-desc">Karakter Hızı</span>
+                    </div>
+                    <div id="res-cpm" class="metric-value">--</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label-stack">
+                        <span class="abbr" id="ui-res-stability-abbr">TUTAR</span>
+                        <span class="desc" id="ui-res-stability-desc">Tutarlılık Skoru</span>
+                    </div>
+                    <div id="res-consistency" class="metric-value">--%</div>
+                </div>
+            </div>
+
+            <!-- METADATA ROW (Triple-Anchor Symmetry) -->
+            <div class="confact-row">
+                <div class="confact-item left"><span id="ui-conf-label-lang">DİL:</span> <span id="res-conf-lang">--</span></div>
+                <div class="confact-item center">
+                    <span id="ui-res-stats-abbr">D / Y / F</span>: <span id="res-key-stats">-- / -- / --</span>
+                </div>
+                <div class="confact-item right"><span id="ui-conf-label-time">SÜRE:</span> <span id="res-conf-time">--</span></div>
+            </div>
+
+            <!-- KEYBOARD HEATMAP SHELL (60% Layout) -->
+            <div id="keyboard-heatmap-shell">
+                <div class="kb-row">
+                    <div class="key" data-key="`"></div><div class="key" data-key="1"></div><div class="key" data-key="2"></div><div class="key" data-key="3"></div><div class="key" data-key="4"></div><div class="key" data-key="5"></div><div class="key" data-key="6"></div><div class="key" data-key="7"></div><div class="key" data-key="8"></div><div class="key" data-key="9"></div><div class="key" data-key="0"></div><div class="key" data-key="-"></div><div class="key" data-key="="></div><div class="key double" data-key="backspace"></div>
+                </div>
+                <div class="kb-row">
+                    <div class="key onehalf" data-key="tab"></div><div class="key" data-key="q"></div><div class="key" data-key="w"></div><div class="key" data-key="e"></div><div class="key" data-key="r"></div><div class="key" data-key="t"></div><div class="key" data-key="y"></div><div class="key" data-key="u"></div><div class="key" data-key="i"></div><div class="key" data-key="o"></div><div class="key" data-key="p"></div><div class="key" data-key="["></div><div class="key" data-key="]"></div><div class="key onehalf" data-key="\"></div>
+                </div>
+                <div class="kb-row">
+                    <div class="key double" data-key="capslock"></div><div class="key" data-key="a"></div><div class="key" data-key="s"></div><div class="key" data-key="d"></div><div class="key" data-key="f"></div><div class="key" data-key="g"></div><div class="key" data-key="h"></div><div class="key" data-key="j"></div><div class="key" data-key="k"></div><div class="key" data-key="l"></div><div class="key" data-key=";"></div><div class="key" data-key="'"></div><div class="key double" data-key="enter"></div>
+                </div>
+                <div class="kb-row">
+                    <div class="key shift" data-key="shift"></div><div class="key" data-key="z"></div><div class="key" data-key="x"></div><div class="key" data-key="c"></div><div class="key" data-key="v"></div><div class="key" data-key="b"></div><div class="key" data-key="n"></div><div class="key" data-key="m"></div><div class="key" data-key=","></div><div class="key" data-key="."></div><div class="key" data-key="/"></div><div class="key shift" data-key="shift"></div>
+                </div>
+                <div class="kb-row">
+                    <div class="key" data-key="control"></div><div class="key" data-key="meta"></div><div class="key" data-key="alt"></div><div class="key space" data-key=" "></div><div class="key" data-key="alt"></div><div class="key" data-key="meta"></div><div class="key" data-key="control"></div>
+                </div>
+            </div>
+
+            <!-- ACTION FOOTER (Restored 3-Button Professional Layout) -->
+            <div class="modal-footer">
+                <div class="modal-actions-tier-1">
+                    <button id="export-btn" class="btn-secondary">GÖRSEL RAPOR (PNG)</button>
+                    <button id="modal-restart-btn" class="btn-hero">YENİ TEST</button>
+                    <button id="full-report-btn" class="btn-secondary">TAM RAPOR (.TXT)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 
+        ARCHITECTURAL SECURITY CONSTRAINTS:
+        To circumvent the browser's strict local security model (CORS) over the file:// protocol, 
+        this application explicitly avoids ES6 module imports (type="module"). 
+        
+        Instead, it utilizes deterministic sequential script execution. Dependencies are 
+        loaded in a strict linear order to ensure that the global namespace (window scope) 
+        is fully hydrated before the UI orchestrator (popup.js) initializes the engine.
+    -->
+    <script src="src/utils/html2canvas.min.js"></script>
+    <script src="src/popup/dictionaries.js"></script>
+    <script src="src/popup/translations.js"></script>
+    <script src="src/popup/textProcessor.js"></script>
+    <script src="src/utils/StorageManager.js"></script>
+    <script src="src/core/Messaging.js"></script>
+    <script src="src/core/WordManager.js"></script>
+    <script src="src/core/SessionManager.js"></script>
+    <script src="src/core/TypingEngine.js"></script>
+    <script src="src/popup/popup.js"></script>
+</body>
+</html>
